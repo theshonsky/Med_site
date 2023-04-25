@@ -1,0 +1,112 @@
+{% extends 'first/layout.html' %}
+
+{% load static %}
+
+{% block title %} {{medcard.lastname}} {{medcard.firstname}} {{medcard.surname}} {% endblock %}
+{% block script %} <script src="{% static 'first/javascript/timegame.js' %}"></script> {% endblock %}
+{% block content %}
+<div class="container-fluid mt-4 px-4">
+  <div class="row g-4">
+    <div class="col">
+      <div class="row g-2">
+        <h5 class="col-md-4 text">Карта пациента № {{medcard.id}}</h5>
+        <h5 class="col-md-6 text">Дата и время приема: {{medcard.datetime}}</h5>
+        {% if can_edit %}
+        <a href="{% url 'card_update' medcard.id %}" id= "edit-button" class = 'btn btn-info col-md-1'> Редактировать</a>
+        
+        <a href="{% url 'card_delete' medcard.id %}" id= "delete-button" class = "btn btn-danger col-md-1"> Удалить</a>
+        {% endif %}
+        <li class="card col-md-4" >
+          <h6 class="card-header ">Фамилия Имя Отчество</h6>   
+          <p class="card-body">
+          {{medcard.lastname}} {{medcard.firstname}} {{medcard.surname}}
+          </p>
+        </li>
+
+        <li class="card col-md-4" >
+          <h6 class="card-header ">ИИН</h6>   
+          <p class="card-body">
+            {{medcard.iin}}
+          </p>
+        </li>
+
+        <li class="card col-md-4">
+          <h6 class="card-header">Дата рождения</h6>   
+          <p class="card-body">
+            {{medcard.birthdate}}
+          </p>
+        </li>
+
+        <li class="card col-md-3">
+          <h6 class="card-header">Факультет/подразделение</h6>   
+          <p class="card-body">
+            {{medcard.faculty}}
+          </p>
+        </li>
+
+        <li class="card col-md-3">
+          <h6 class="card-header">Группа/кафедра</h6>   
+          <p class="card-body">
+            {{medcard.group}}
+          </p>
+        </li>
+
+        <li class="card col-md-3">
+          <h6 class="card-header">Должность</h6>   
+          <p class="card-body">
+            {{medcard.status}}
+          </p>
+        </li>
+
+        <li class="card col-md-3">
+          <h6 class="card-header">Домашний адрес</h6>   
+          <p class="card-body">
+            {{medcard.address}}
+          </p>
+        </li>
+
+        <li class="card col-md-12">
+          <h6 class="card-header">Жалобы, краткий анамнез, основные симптомы заболевания, показатели здоровья</h6>   
+          <p class="card-body">
+            {{medcard.simptoms}}
+          </p>
+        </li>
+        
+        <li class="card col-md-5">
+          <h6 class="card-header">Диагноз</h6>   
+          <p class="card-body">
+            {{medcard.diagnosis.name}}
+          </p>
+        </li>
+        <li class="card col-md-1">
+          <h6 class="card-header">Код</h6>   
+          <p class="card-body">
+            {{medcard.diagnosis.code}}
+          </p>
+        </li>
+        
+        <li class="card col-md-6">
+          <h6 class="card-header">Назначения</h6>   
+          <p class="card-body">
+            {{medcard.suggestions}}
+          </p>
+        </li>
+
+        <li class="card col-md-2">
+          <h6 class="card-header">Перв/повт</h6>   
+          <p class="card-body">
+            {{medcard.perv_povt}}
+          </p>
+        </li>
+
+        <li class="card col-md-10">
+          <h6 class="card-header">Примечание(осв., направл)</h6>   
+          <p class="card-body">
+            {{medcard.additions}}
+          </p>
+        </li>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}

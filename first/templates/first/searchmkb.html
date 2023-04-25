@@ -1,0 +1,24 @@
+{% extends 'first/layout.html' %}
+
+{% load static %}
+
+{% block title %} Список медкарт {% endblock %}
+{% block script %} <script src="{% static 'first/javascript/copytoclipboard.js' %}" defer></script>{% endblock %}
+{% block content %}
+<form class="d-flex mx-4 mt-3 " role="search" method="POST" action="{% url 'searchmkb' %}">
+    {%csrf_token%}
+    <input class="form-control me-2" type="search" placeholder="Поиск по МКБ-10" aria-label="Search" name="searchedmkb">
+    <button class="btn btn-outline-success" type="submit">Поиск</button>
+</form>
+    <div class="container-fluid mt-4 px-4">
+      <div class="list-group col-md-12 order-first overflow-auto" style="max-height: 800px;">
+        {% if searchedmkb %}
+        <h4 class="my-3 mx-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;" >Результаты поиска по запросу "{{ searchedmkb }}"</h4>
+        {% for el in mkb10 %}
+        <a class="list-group-item list-group-item-action"> <button class="btn btn-outline-success copy-btn" mkbid={{el.id}}>{{el.id}}</button>  {{el.name}}  <strong >{{el.code}}</strong> </a>
+        
+        {% endfor%}
+        {% endif %}
+      </div>
+    </div>   
+{% endblock %}

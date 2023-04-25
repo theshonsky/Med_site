@@ -1,0 +1,18 @@
+{% extends 'first/layout.html' %}
+
+{% load static %}
+
+{% block title %} Список медкарт {% endblock %}
+
+{% block content %}
+    <div class="container-fluid mt-4 px-4">
+      <div class="list-group col-md-12 order-first overflow-auto" style="max-height: 800px;">
+        {% if searched %}
+        <h4 class="my-3 mx-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;" >Результаты поиска по запросу "{{ searched }}"</h4>
+        {% for el in cardname %}
+        <a href="{% url 'studmedcard' el.id %}" class="list-group-item list-group-item-action"><strong>{{el.iin}}</strong> {{el.datetime}}  {{el.lastname}} {{el.firstname}} </a>
+        {% endfor%}
+        {% endif %}
+      </div>
+    </div>   
+{% endblock %}

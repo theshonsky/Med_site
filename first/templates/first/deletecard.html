@@ -1,0 +1,14 @@
+{% extends 'first/layout.html' %}
+
+{% load static %}
+
+{% block title %} Удаление карты {% endblock %}
+
+{% block content %}
+    <h4 class="my-3 mx-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;" >Удаление медицинской карты</h4>
+    <form method="post" >
+        {% csrf_token %}
+        <button class="btn btn-success col-md-4 justify-content-center" type="submit"> Удалить карту
+        </button>
+    </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'first/layout.html' %}
+
+{% load static %}
+
+{% block title %} Список медкарт {% endblock %}
+
+{% block content %}
+<form class="d-flex mx-4 mt-3" role="search" method="POST" action="{% url 'searchmkb' %}">
+  {%csrf_token%}
+  <input class="form-control me-2" type="search" placeholder="Поиск по МКБ-10" aria-label="Search" name="searchedmkb">
+  <button class="btn btn-outline-success" type="submit">Поиск</button>
+</form>
+    <div class="container-fluid mt-4 px-4">
+      <div class="list-group col-md-12 order-first overflow-auto" style="max-height: 800px;">
+        {% for el in mkb10 %}
+        <div class="list-group-item"><strong>{{el.id}}   {{el.code}} </strong>{{el.name}}</div>
+        {% endfor%}
+      </div>
+    </div>   
+{% endblock %}

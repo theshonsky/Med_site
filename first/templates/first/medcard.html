@@ -1,0 +1,15 @@
+{% extends 'first/layout.html' %}
+
+{% load static %}
+
+{% block title %} Список медкарт {% endblock %}
+
+{% block content %}
+    <div class="container-fluid mt-4 px-4">
+      <div class="list-group col-md-12 order-first overflow-auto" style="max-height: 800px;">
+        {% for el in card %}
+        <a href="{% url 'studmedcard' el.id %}" class="list-group-item list-group-item-action">{{el.datetime}} <strong>{{el.lastname}} {{el.firstname}}</strong></a>
+        {% endfor%}
+      </div>
+    </div>   
+{% endblock %}

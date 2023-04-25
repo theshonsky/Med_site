@@ -1,0 +1,32 @@
+
+#logo {
+    width:90px;
+}
+.nav-link:hover{
+    color: rgb(36, 95, 134);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.navbar-brand:hover{
+    color: rgb(36, 95, 134);
+}
+.navbar-brand{
+    color: aliceblue;
+    font-family: 'Comfortaa', cursive;
+    font-size: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: aliceblue;
+    text-align: center;
+}
+.navbar-toggler {
+    color: aliceblue;
+}
+
+.nav-link{
+    font-family: 'Comfortaa', arial;
+}
