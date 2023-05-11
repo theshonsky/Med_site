@@ -8,7 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from datetime import datetime, timedelta
-from first.utils import render_to_pdf
+
+from xhtml2pdf import pisa
 # Create your views here.
 
 def sign_in(request):
@@ -117,3 +118,4 @@ class GeneratePdf(DetailView):
     model = Medcard
     template_name = 'first/direction.html'
     context_object_name = 'stud_data'
+    
