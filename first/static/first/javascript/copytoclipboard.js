@@ -1,5 +1,6 @@
 const copyText = [...document.getElementsByClassName('copy-btn')]
   let previous = null
+  let last = null
   copyText.forEach(btn=> btn.addEventListener('click', ()=>{
     const number = btn.getAttribute('mkbid')
     console.log(number)
@@ -7,7 +8,8 @@ const copyText = [...document.getElementsByClassName('copy-btn')]
     btn.textContent = 'Скопировано'
     
     if (previous){
-      previous.textContent= 'Копировать'
+      previous.textContent= last
     }
     previous = btn
+    last = number
   }))
