@@ -35,7 +35,15 @@ def logoutuser(request):
 
 @login_required(login_url='sign_in')
 def mainpage(request):
-    return render(request, 'first/mainpage.html')
+    year = ["Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+    months = ["2023-01", "2023-02","2023-03","2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12"]
+    stat = {}
+    n = 0
+    for month in  months:
+        inMonth = Medcard.objects.filter(datetime__iregex = month)
+        stat[year[n]] = inMonth.count()
+        n += 1
+    return render(request, 'first/mainpage.html', {'stat':stat})
 
 @login_required(login_url='sign_in')
 def addcard(request):

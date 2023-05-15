@@ -7,4 +7,4 @@ setTimeout(function() {
     if (butt) {
         butt.style.display = 'none';
     }
-}, 24 * 60 * 60 * 1000); // 24 часа в миллисекундах
+}, 24 * 60 * 60 * 1000); 
