@@ -5,20 +5,24 @@
 {% endblock %}
 {% block content %}
 <div class="mx-4">
-    <h2 class="my-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Статистика посящений за 2023 год</h2>
+    <h2 class="my-3">Статистика посящений за 2023 год</h2>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Месяц</th>
-                <th>Количество посящений</th>
+                <th>Всего</th>
+                <th>Студентов</th>
+                <th>Преподавателей</th>
             </tr>
         </thead>
         <tbody>
             {% for key, values in stat.items %}
             <tr>
                 <td>{{key}}</td>
-                <td>{{values}}</td>
+                {% for v in values %}
+                <td>{{v}}</td>
+                {% endfor %}
             </tr>
             {% endfor %}
         </tbody>

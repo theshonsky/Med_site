@@ -40,8 +40,14 @@ def mainpage(request):
     stat = {}
     n = 0
     for month in  months:
+        numbers = []
         inMonth = Medcard.objects.filter(datetime__iregex = month)
-        stat[year[n]] = inMonth.count()
+        Students = inMonth.filter(status__iregex = "Студент")
+        Teachers = inMonth.filter(status__iregex = "Преподаватель")
+        numbers.append(inMonth.count())
+        numbers.append(Students.count())
+        numbers.append(Teachers.count())
+        stat[year[n]] = numbers
         n += 1
     return render(request, 'first/mainpage.html', {'stat':stat})
 
