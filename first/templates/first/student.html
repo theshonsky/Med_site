@@ -9,13 +9,14 @@
   <div class="row g-4">
     <div class="col">
       <div class="row g-2">
-        <h5 class="col-md-4 text">Карта пациента № {{medcard.id}}</h5>
+        <h5 class="col-md-3 text">Карта пациента № {{medcard.id}}</h5>
         <h5 class="col-md-6 text">Дата и время приема: {{medcard.datetime}}</h5>
         {% if can_edit %}
         <a href="{% url 'card_update' medcard.id %}" id= "edit-button" class = 'btn btn-info col-md-1'> Редактировать</a>
         
         <a href="{% url 'card_delete' medcard.id %}" id= "delete-button" class = "btn btn-danger col-md-1"> Удалить</a>
         {% endif %}
+        <a href="{% url 'direction' medcard.id%}" id= "direction-button" class = 'btn btn-secondary col-md-1'>Печать</a>
         <li class="card col-md-4" >
           <h6 class="card-header ">Фамилия Имя Отчество</h6>   
           <p class="card-body">
