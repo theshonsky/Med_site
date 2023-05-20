@@ -9,8 +9,8 @@
   <div class="row g-4">
     <div class="col">
       <div class="row g-2">
-        <h5 class="col-md-3 text">Карта пациента № {{medcard.id}}</h5>
-        <h5 class="col-md-6 text">Дата и время приема: {{medcard.datetime}}</h5>
+        <h5 class="col-md-3 text" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Карта пациента № {{medcard.id}}</h5>
+        <h5 class="col-md-6 text" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Дата и время приема: {{medcard.datetime}}</h5>
         {% if can_edit %}
         <a href="{% url 'card_update' medcard.id %}" id= "edit-button" class = 'btn btn-info bi bi-pencil col-md-1'> Редактировать</a>
         
