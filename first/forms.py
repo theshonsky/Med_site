@@ -1,5 +1,10 @@
 from .models import Medcard
-from django.forms import ModelForm, TextInput, DateInput, CheckboxInput, NumberInput,Textarea
+from django.forms import ModelForm, TextInput, DateInput, CheckboxInput, NumberInput,Textarea, RadioSelect
+
+CHOICES= [
+    ('первичный', 'Первичный'),
+    ('повторный', 'Повторный')
+    ]
 
 class MedcardForm(ModelForm):
     class Meta:
@@ -19,8 +24,9 @@ class MedcardForm(ModelForm):
             "surname":TextInput(attrs={
             'class': 'shadow form-control'
             }),
-            "birthdate":DateInput(attrs={
+            "birthdate":NumberInput(attrs={
             'class': 'shadow form-control',
+            'type': 'date'
             }),
             "faculty":TextInput(attrs={
             'class': 'shadow form-control'
@@ -43,9 +49,9 @@ class MedcardForm(ModelForm):
             "suggestions":TextInput(attrs={
             'class': 'shadow form-control'
             }),
-            "perv_povt":TextInput(attrs={
-            'class': 'shadow form-control'
-            }),
+            "perv_povt":RadioSelect(attrs={
+            'class': 'form'
+            }, choices=CHOICES),
             "additions":TextInput(attrs={
             'class': 'shadow form-control'
             }),

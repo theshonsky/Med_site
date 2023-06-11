@@ -5,10 +5,15 @@
 {% block title %} Удаление карты {% endblock %}
 
 {% block content %}
-    <h4 class="my-3 mx-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;" >Удаление медицинской карты</h4>
-    <form method="post" >
+<div class="row justify-content-center my-3 mx-3 ">
+    <h4 class="col-md-4" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;" >Удаление медицинской карты</h4>
+    </div>  
+    <div class="row justify-content-center my-3 mx-3 ">  
+    <form method="post" class="col-md-1">
         {% csrf_token %}
-        <button class="btn btn-success col-md-4 justify-content-center" type="submit"> Удалить карту
+        <button class="btn btn-danger " type="submit"> Удалить карту
         </button>
     </form>
+    <b class="col-md-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Удаленные данные будет невозможно восстановить</b>
+</div>
 {% endblock %}

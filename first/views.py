@@ -8,8 +8,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from datetime import datetime, timedelta
-
-from xhtml2pdf import pisa
 # Create your views here.
 
 def sign_in(request):
@@ -38,18 +36,24 @@ def mainpage(request):
     year = ["Январь","Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
     months = ["2023-01", "2023-02","2023-03","2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12"]
     stat = {}
-    n = 0
-    for month in  months:
+    chartdata = []
+    for i in  range(len(months)):
         numbers = []
-        inMonth = Medcard.objects.filter(datetime__iregex = month)
+        inMonth = Medcard.objects.filter(datetime__iregex = months[i])
         Students = inMonth.filter(status__iregex = "Студент")
         Teachers = inMonth.filter(status__iregex = "Преподаватель")
         numbers.append(inMonth.count())
         numbers.append(Students.count())
+        chartdata.append(inMonth.count())
         numbers.append(Teachers.count())
-        stat[year[n]] = numbers
-        n += 1
-    return render(request, 'first/mainpage.html', {'stat':stat})
+        stat[year[i]] = numbers
+        
+    context = {
+        'stat':stat,
+        'chartdata':chartdata,
+        'year': year
+    }
+    return render(request, 'first/mainpage.html', context)
 
 @login_required(login_url='sign_in')
 def addcard(request):

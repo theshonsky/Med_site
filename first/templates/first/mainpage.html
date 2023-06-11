@@ -6,13 +6,12 @@
 {% block content %}
 <div class="mx-4">
     <h2 class="my-3" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Статистика посящений за 2023 год</h2>
-<canvas id="myChart" style="width:100%;max-height:600px"></canvas>
     <table class="table" style="width:100%">
         <thead>
             <tr>
-                <th style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Месяц</th>
-                <th style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Всего</th>
-                <th style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Студенты</th>
+                <th class="text-break" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Месяц</th>
+                <th class="text-break" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Всего</th>
+                <th class="text-break" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Студенты</th>
                 <th class="text-break" style ="color: rgb(36,56,90); font-family: 'Comfortaa', cursive;">Преподаватели</th>
             </tr>
         </thead>
@@ -27,31 +26,24 @@
             {% endfor %}
         </tbody>
     </table>
+    <canvas id="myChart" style="width:100%"></canvas>
 </div>
 
 <script>
-    const xValues = [50,60,70,80,90,100,110,120,130,140,150];
-    const yValues = [7,8,8,9,9,9,10,11,14,14,15];
-    
-    new Chart("myChart", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-    </script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ year|safe }},
+      datasets: [{
+        label: 'Общее количество',
+        data: {{ chartdata|safe }}
+      }]
+    },
+    options: {
+    legend: {display: false}
+  }
+  });
+</script>
     
 {% endblock %}
